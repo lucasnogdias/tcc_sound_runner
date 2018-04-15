@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 2081392549}
   - component: {fileID: 2081392548}
   - component: {fileID: 2081392547}
+  - component: {fileID: 2081392551}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -295,3 +296,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2081392551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081392546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acf7b05db44d954c92bcd5b8e4edbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePremade: {fileID: 1621105346047608, guid: 25f73ffec736bb84dba874c8bc2f0f92,
+    type: 2}
+  initPositions:
+  - {x: -2, y: 8, z: 0}
+  - {x: 2, y: 8, z: 0}
+  - {x: 0, y: 8, z: 0}
