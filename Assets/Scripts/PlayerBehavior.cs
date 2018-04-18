@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehavior : MonoBehaviour {
 
@@ -27,6 +28,15 @@ public class PlayerBehavior : MonoBehaviour {
         if (Input.GetKeyUp("up")||Input.GetKeyUp("down"))
         {
             moveCharacter("center");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Obstacle")
+        {
+            Destroy(coll.gameObject);
+            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         }
     }
 
