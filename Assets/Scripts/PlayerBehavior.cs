@@ -2,30 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehavior : MonoBehaviour {
 
     private Vector3 leftLanePos = new Vector3(-2.0f, -4.0f, 0.0f);
     private Vector3 rightLanePos = new Vector3(2.0f, -4.0f, 0.0f);
     private Vector3 middleLanePos = new Vector3(0.0f, -4.0f, 0.0f);
-    private Gyroscope gyro;
 
 	// Use this for initialization
 	void Start () {
         //Initial Position
         this.transform.position = middleLanePos;
-
-        //Set gyroscope
-        gyro = Input.gyro;
-        if (!gyro.enabled)
-        {
-            gyro.enabled = true;
-        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //Gets keyboard input. Usefull for testing.
+        //Gets keyboard input. Usefull for testing on the computer.
         if (Input.GetKeyUp("left")){
             moveCharacter("left");
         }
@@ -38,24 +31,24 @@ public class PlayerBehavior : MonoBehaviour {
             moveCharacter("center");
         }
 
-        //Gets Gyroscope value
-        //TODO: Test on the phone if  the X is really the axis i have to get for the effect i want to get.
-        float gyroX = this.gyro.attitude.x;
-        print(gyroX);
-        //Sets Player position based on the gyroscope value. Comment to enable Keyboard Control for testing.
-        //TODO: check this value, it must be empyrical and be confortable for the player
-        /*if (gyroX < -30.0f)
+        //Get Phone or Tablet Orientation
+        DeviceOrientation orientation = Input.deviceOrientation;
+        //Sets Player position based on the orientation value.
+        if (orientation != DeviceOrientation.Unknown) //Check if we know device's orientation
         {
-            moveCharacter("left");
+            if (orientation == DeviceOrientation.LandscapeLeft)
+            {
+                moveCharacter("left");
+            }
+            else if (orientation == DeviceOrientation.LandscapeRight)
+            {
+                moveCharacter("right");
+            }
+            else if (orientation == DeviceOrientation.Portrait || orientation == DeviceOrientation.PortraitUpsideDown)
+            {
+                moveCharacter("center");
+            }
         }
-        else if (gyroX > 30.0f)
-        {
-            moveCharacter("right");
-        }
-        else
-        {
-            moveCharacter("center");
-        }*/
     }
 
     void OnCollisionEnter2D(Collision2D coll)
