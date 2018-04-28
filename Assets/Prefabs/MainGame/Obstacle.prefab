@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33984030926343332}
   - component: {fileID: 23445074278553846}
   - component: {fileID: 61944208958865026}
+  - component: {fileID: 114690033106421462}
   - component: {fileID: 50947649781228134}
   - component: {fileID: 82038843978718986}
   m_Layer: 0
@@ -216,3 +217,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114690033106421462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621105346047608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b197c5bfe425e3142b931d79521ea33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleAudio: {fileID: 82038843978718986}
