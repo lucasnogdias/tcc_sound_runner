@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehavior : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class PlayerBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Gets keyboard input. Usefull for testing.
+        //Gets keyboard input. Usefull for testing on the computer.
         if (Input.GetKeyUp("left")){
             moveCharacter("left");
         }
@@ -28,6 +29,25 @@ public class PlayerBehavior : MonoBehaviour {
         if (Input.GetKeyUp("up")||Input.GetKeyUp("down"))
         {
             moveCharacter("center");
+        }
+
+        //Get Phone or Tablet Orientation
+        DeviceOrientation orientation = Input.deviceOrientation;
+        //Sets Player position based on the orientation value.
+        if (orientation != DeviceOrientation.Unknown) //Check if we know device's orientation
+        {
+            if (orientation == DeviceOrientation.LandscapeLeft)
+            {
+                moveCharacter("left");
+            }
+            else if (orientation == DeviceOrientation.LandscapeRight)
+            {
+                moveCharacter("right");
+            }
+            else if (orientation == DeviceOrientation.Portrait || orientation == DeviceOrientation.PortraitUpsideDown)
+            {
+                moveCharacter("center");
+            }
         }
     }
 
