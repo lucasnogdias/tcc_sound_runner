@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ObstacleBehaviour : MonoBehaviour {
 
-    public AudioSource obstacleAudio;
+    public AudioSource obstacleAudioSource;
 
 	// Use this for initialization
 	void Start () {
-        obstacleAudio.pitch = Random.Range(0.3f, 0.5f);
+        this.obstacleAudioSource.clip = ObstacleSpawner.obstacleAudio.Pop();
+        obstacleAudioSource.pitch = Random.Range(0.3f, 0.7f);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void returnClip()
+    {
+        ObstacleSpawner.obstacleAudio.Push(this.obstacleAudioSource.clip);
+    }
 }

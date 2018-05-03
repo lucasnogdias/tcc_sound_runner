@@ -228,4 +228,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b197c5bfe425e3142b931d79521ea33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleAudio: {fileID: 82038843978718986}
+  obstacleAudioSource: {fileID: 82038843978718986}

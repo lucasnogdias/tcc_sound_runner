@@ -85,7 +85,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470114181724450}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &114782171049798426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePremade: {fileID: 1621105346047608, guid: 25f73ffec736bb84dba874c8bc2f0f92,
     type: 2}
+  audioSourcesList:
+  - {fileID: 8300000, guid: c5db7d8b197e1f644a7763e3f6caffaf, type: 3}
+  - {fileID: 8300000, guid: 441280f0d1f2e904681b70819b484636, type: 3}
+  - {fileID: 8300000, guid: b5f963c505933a9439a94e4a88459aef, type: 3}
+  - {fileID: 8300000, guid: f42fe0e60fdce6b43a280b2228393a8b, type: 3}
 --- !u!124 &124637537594301196
 Behaviour:
   m_ObjectHideFlags: 1
