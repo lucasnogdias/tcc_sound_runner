@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour {
 
-    public static Stack<AudioClip> obstacleAudio;
+    public static Queue<AudioClip> obstacleAudio = new Queue<AudioClip>();
 
     private static List<Vector3> initPositions = new List<Vector3>(new Vector3[] {
-            new Vector3(-2.0f, 8.0f, 0.0f),
-            new Vector3(2.0f, 8.0f, 0.0f),
+            new Vector3(-2.5f, 8.0f, 0.0f),
+            new Vector3(2.5f, 8.0f, 0.0f),
             new Vector3(0.0f, 8.0f, 0.0f),
         });
 
@@ -31,7 +31,7 @@ public class ObstacleSpawner : MonoBehaviour {
     void Start () {
         //Set the list of audioClips in a stack used by the Obstacles
         reshuffle(audioSourcesList);
-        ObstacleSpawner.obstacleAudio = new Stack<AudioClip>(this.audioSourcesList);
+        ObstacleSpawner.obstacleAudio = new Queue<AudioClip>(this.audioSourcesList);
 
         //Start the coountdown for the spawns.
         StartCoroutine(waitAndSpawn(0.5f));
