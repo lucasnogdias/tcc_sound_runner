@@ -23,15 +23,28 @@ public class ObstacleBehaviour : MonoBehaviour {
             obstacleAudioSource.panStereo = 0;
         //set random pitch for audio clip.
         obstacleAudioSource.pitch = Random.Range(0.3f, 0.7f);
-	}
+        //set initial volume
+        obstacleAudioSource.volume = 0.0f;
+    }
 
-    void Update()
+    void FixedUpdate()
     {
-        //rolls of volume faster after player is behind
+        //Adjusts volume according to obstacle vertical distance to listener
         var y = this.transform.position.y;
-        if (y < -5.5f && obstacleAudioSource.volume > 0)
+        var verticalDistance = y - (-4.0f);
+
+
+        if (verticalDistance > 0 && obstacleAudioSource.volume < 1)
         {
-            obstacleAudioSource.volume -= 0.01f;
+            obstacleAudioSource.volume = 1.0f - (0.0833333f * verticalDistance);
+            obstacleAudioSource.pitch += 0.0001f;
+        }
+
+
+        if (verticalDistance < -0.2f && obstacleAudioSource.volume > 0)
+        {
+            obstacleAudioSource.volume = 1.0f + (0.0833333f * verticalDistance);
+            obstacleAudioSource.pitch -= 0.0002f;
         }
     }
 	
