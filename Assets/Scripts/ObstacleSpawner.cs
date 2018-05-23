@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour {
 
-    public static Queue<AudioClip> obstacleAudio = new Queue<AudioClip>();
-
     private static List<Vector3> initPositions = new List<Vector3>(new Vector3[] {
             new Vector3(-2.5f, 8.0f, 0.0f),
             new Vector3(2.5f, 8.0f, 0.0f),
             new Vector3(0.0f, 8.0f, 0.0f),
         });
+    private int consecutiveLeft;
+    private int consecutiveRight;
+    private int consecutiveMiddle;
 
+    public static Queue<AudioClip> obstacleAudio = new Queue<AudioClip>();
     public GameObject obstaclePremade;
     public AudioClip[] audioSourcesList;
 
@@ -41,8 +43,43 @@ public class ObstacleSpawner : MonoBehaviour {
     {
         yield return new WaitForSeconds(waitTime);
         //Spawn object here
-        Random.InitState(System.DateTime.Now.Millisecond);
-        int pos = Random.Range(0, ObstacleSpawner.initPositions.Count);
+        bool validSpawn = false;
+        int pos = 0;
+        while (!validSpawn)
+        {
+            Random.InitState(System.DateTime.Now.Millisecond);
+            pos = Random.Range(0, ObstacleSpawner.initPositions.Count);
+            if (pos == 0)
+            { //spawning on the left
+                if (this.consecutiveLeft < 2)
+                {
+                    validSpawn = true;
+                    this.consecutiveLeft += 1;
+                    this.consecutiveRight = 0;
+                    this.consecutiveMiddle = 0;
+                }
+            }
+            else if (pos == 1)
+            { //spawning on the right
+                if (this.consecutiveRight < 2)
+                {
+                    validSpawn = true;
+                    this.consecutiveRight += 1;
+                    this.consecutiveLeft = 0;
+                    this.consecutiveMiddle = 0;
+                }
+            }
+            else
+            { //Spawning on center
+                if (this.consecutiveMiddle < 2)
+                {
+                    validSpawn = true;
+                    this.consecutiveMiddle += 1;
+                    this.consecutiveLeft = 0;
+                    this.consecutiveRight = 0;
+                }
+            }
+        }
         GameObject obstacle = GameObject.Instantiate(this.obstaclePremade);
         obstacle.transform.position = ObstacleSpawner.initPositions[pos];
         obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.5f);

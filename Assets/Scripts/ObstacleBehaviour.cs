@@ -22,7 +22,7 @@ public class ObstacleBehaviour : MonoBehaviour {
         else //Middle Lane
             obstacleAudioSource.panStereo = 0;
         //set random pitch for audio clip.
-        obstacleAudioSource.pitch = Random.Range(0.3f, 0.7f);
+        obstacleAudioSource.pitch = Random.Range(0.5f, 0.9f);
         //set initial volume
         obstacleAudioSource.volume = 0.0f;
     }
@@ -41,7 +41,7 @@ public class ObstacleBehaviour : MonoBehaviour {
         }
 
 
-        if (verticalDistance < -0.2f && obstacleAudioSource.volume > 0)
+        if (verticalDistance < -0.1f && obstacleAudioSource.volume > 0)
         {
             obstacleAudioSource.volume = 1.0f + (0.0833333f * verticalDistance);
             obstacleAudioSource.pitch -= 0.0002f;
