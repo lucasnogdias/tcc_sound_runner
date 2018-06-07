@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4581610471275948}
   - component: {fileID: 20765442728696140}
   - component: {fileID: 124637537594301196}
-  - component: {fileID: 81978729384018282}
   - component: {fileID: 114782171049798426}
   m_Layer: 0
   m_Name: Main Camera - Game
@@ -72,20 +71,13 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81978729384018282
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1470114181724450}
-  m_Enabled: 1
 --- !u!114 &114782171049798426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,10 +91,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePremade: {fileID: 1621105346047608, guid: 25f73ffec736bb84dba874c8bc2f0f92,
     type: 2}
+  audioSourcesList:
+  - {fileID: 8300000, guid: 499ef43107f66f943bc0dc0d7fd1ce98, type: 3}
+  - {fileID: 8300000, guid: d898161a4829ee3418e156af4226b3b8, type: 3}
+  - {fileID: 8300000, guid: f81c25bb23d76f04da15ea6a137cb9f4, type: 3}
+  - {fileID: 8300000, guid: 9aedcdbf9257650468b2bc44396cd938, type: 3}
+  - {fileID: 8300000, guid: 9538ace5c1cba524e9c80176201e3599, type: 3}
+  - {fileID: 8300000, guid: 22d8df49623bdba46bafed40cd392542, type: 3}
+  - {fileID: 8300000, guid: 20ead208e062a7f4698105bc47000c56, type: 3}
+  - {fileID: 8300000, guid: 7baf8a39e8bde96478778af126009570, type: 3}
 --- !u!124 &124637537594301196
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470114181724450}
-  m_Enabled: 1
+  m_Enabled: 0
