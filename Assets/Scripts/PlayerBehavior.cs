@@ -31,6 +31,7 @@ public class PlayerBehavior : MonoBehaviour {
             moveCharacter("center");
         }
 
+        /*
         //Get Phone or Tablet Orientation
         DeviceOrientation orientation = Input.deviceOrientation;
         //Sets Player position based on the orientation value.
@@ -48,7 +49,56 @@ public class PlayerBehavior : MonoBehaviour {
             {
                 moveCharacter("center");
             }
+        }*/
+
+        Vector2 startPos = new Vector2();
+        Vector2 direction = new Vector2();
+        bool directionChosen = false;
+        // Track a single touch as a direction control.
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            // Handle finger movements based on touch phase.
+            switch (touch.phase)
+            {
+                // Record initial touch position.
+                case TouchPhase.Began:
+                    startPos = touch.position;
+                    directionChosen = false;
+                    break;
+
+                // Determine direction by comparing the current touch position with the initial one.
+                case TouchPhase.Moved:
+                    direction = touch.position - startPos;
+                    break;
+
+                // Report that a direction has been chosen when the finger is lifted.
+                case TouchPhase.Ended:
+                    directionChosen = true;
+                    break;
+            }
         }
+        if (directionChosen)
+        {
+            print(direction);// Something that uses the chosen direction...
+            if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+            {
+                //Movement was more vertical than horizontal, move player to central lane.
+                moveCharacter("center");
+            }
+            else if (direction.x>0)
+            {
+                //Movement to the right, move player to right lane.
+                moveCharacter("right");
+            }
+            else if (direction.x<0)
+            {
+                //Movement to the left, move player to left lane.
+                moveCharacter("left");
+            }
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D coll)
