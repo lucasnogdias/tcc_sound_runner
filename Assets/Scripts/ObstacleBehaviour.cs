@@ -37,14 +37,16 @@ public class ObstacleBehaviour : MonoBehaviour {
         if (verticalDistance > 0 && obstacleAudioSource.volume < 1)
         {
             obstacleAudioSource.volume = 1.0f - (0.0833333f * verticalDistance);
-            obstacleAudioSource.pitch += 0.0001f;
         }
 
 
         if (verticalDistance < -0.1f && obstacleAudioSource.volume > 0)
         {
             obstacleAudioSource.volume = 1.0f + (0.0833333f * verticalDistance);
-            obstacleAudioSource.pitch -= 0.0002f;
+            if (verticalDistance > -0.2f)
+            {
+                obstacleAudioSource.pitch -= 0.0002f;
+            }
         }
     }
 	
