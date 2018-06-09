@@ -10,8 +10,13 @@ public class PlayerBehavior : MonoBehaviour {
     private Vector3 rightLanePos = new Vector3(2.0f, -4.0f, 0.0f);
     private Vector3 middleLanePos = new Vector3(0.0f, -4.0f, 0.0f);
 
-	// Use this for initialization
-	void Start () {
+    private Vector2 startPos = new Vector2();
+    private Vector2 direction = new Vector2();
+    private bool directionChosen = false;
+
+    // Use this for initialization
+    void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         //Initial Position
         this.transform.position = middleLanePos;
 	}
@@ -51,9 +56,7 @@ public class PlayerBehavior : MonoBehaviour {
             }
         }*/
 
-        Vector2 startPos = new Vector2();
-        Vector2 direction = new Vector2();
-        bool directionChosen = false;
+        
         // Track a single touch as a direction control.
         if (Input.touchCount > 0)
         {
@@ -81,7 +84,8 @@ public class PlayerBehavior : MonoBehaviour {
         }
         if (directionChosen)
         {
-            print(direction);// Something that uses the chosen direction...
+            directionChosen = false;
+            // Something that uses the chosen direction...
             if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
             {
                 //Movement was more vertical than horizontal, move player to central lane.
