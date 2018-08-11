@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour {
 
     int numClicks = 0;
-    
-	// Update is called once per frame
-	void Update () {
+
+    public Text scoreText;
+
+    void Start()
+    {
+        this.scoreText.text = GameController.instance.GetComponent<GameController>().playerScore.ToString() + " Pontos";
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetMouseButtonUp(0))
         {
             if (this.numClicks <= 0)

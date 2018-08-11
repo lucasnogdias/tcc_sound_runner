@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
     public static GameObject instance = null;
 
     public int playerScore = 0;
-    public int scoreMultiplier = 0;
+    public int scoreMultiplier = 1;
     public int currentLevel = 0;
     public int pointsToNextLevel = 100;
     public int pointStreak = 0;
@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
         if (GameController.instance == null)
         {
             GameController.instance = this.gameObject;
+            DontDestroyOnLoad(this.gameObject);
         }
 
         else
@@ -26,7 +27,11 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void scorePoints(){
+    public void scorePoints(){
+        Debug.Log("Score points");
+        Debug.Log("Point Value: " + this.basePointValue);
+        Debug.Log("Multiplyer: " + this.scoreMultiplier);
+        Debug.Log("Points earned: " + (this.basePointValue * this.scoreMultiplier));
         this.playerScore += this.basePointValue * this.scoreMultiplier;
         this.pointStreak++;
         if (this.playerScore > this.pointsToNextLevel)
