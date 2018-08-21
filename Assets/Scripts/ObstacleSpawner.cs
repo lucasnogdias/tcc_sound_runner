@@ -80,9 +80,11 @@ public class ObstacleSpawner : MonoBehaviour {
                 }
             }
         }
+        float spawnInterval = GameController.instance.GetComponent<GameController>().GetSpawnInterval();
+        float spawnSpeed = GameController.instance.GetComponent<GameController>().GetSpawnSpeed();
         GameObject obstacle = GameObject.Instantiate(this.obstaclePremade);
         obstacle.transform.position = ObstacleSpawner.initPositions[pos];
-        obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.5f);
-        StartCoroutine(waitAndSpawn(5.5f));
+        obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -spawnSpeed);
+        StartCoroutine(waitAndSpawn(spawnInterval));
     }
 }

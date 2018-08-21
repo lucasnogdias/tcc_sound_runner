@@ -9,6 +9,7 @@ public class PlayerBehavior : MonoBehaviour {
     private Vector3 leftLanePos = new Vector3(-2.0f, -4.0f, 0.0f);
     private Vector3 rightLanePos = new Vector3(2.0f, -4.0f, 0.0f);
     private Vector3 middleLanePos = new Vector3(0.0f, -4.0f, 0.0f);
+    private int lives = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -56,7 +57,17 @@ public class PlayerBehavior : MonoBehaviour {
         if (coll.gameObject.tag == "Obstacle")
         {
             Destroy(coll.gameObject);
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            Handheld.Vibrate();
+            if (this.lives > 0)
+            {
+                this.lives--;
+                GameController.instance.GetComponent<GameController>().scoreMultiplier = 1; //Reset ScoreMultiplier
+            }
+            else
+            {
+                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 
@@ -71,6 +82,14 @@ public class PlayerBehavior : MonoBehaviour {
             default :
                 transform.position = this.middleLanePos;
                 break;
+        }
+    }
+
+    public void recoverLives()
+    {
+        if (this.lives < 4)
+        {
+            this.lives++;
         }
     }
     
