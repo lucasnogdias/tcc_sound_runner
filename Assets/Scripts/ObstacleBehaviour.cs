@@ -33,8 +33,7 @@ public class ObstacleBehaviour : MonoBehaviour {
         var y = this.transform.position.y;
         var verticalDistance = y - (-4.0f);
 
-
-        if (verticalDistance > 0 && obstacleAudioSource.volume < 1)
+        if (verticalDistance > 0 /*&& obstacleAudioSource.volume < 1*/)
         {
             obstacleAudioSource.volume = 1.0f - (0.0833333f * verticalDistance);
         }
@@ -42,10 +41,10 @@ public class ObstacleBehaviour : MonoBehaviour {
 
         if (verticalDistance < -0.1f && obstacleAudioSource.volume > 0)
         {
-            obstacleAudioSource.volume = 1.0f + (0.0833333f * verticalDistance);
+            obstacleAudioSource.volume = 1.0f + (0.3833333f * verticalDistance);
             if (verticalDistance > -0.2f)
             {
-                obstacleAudioSource.pitch -= 0.0002f;
+                obstacleAudioSource.pitch -= 0.0022f;
             }
         }
     }

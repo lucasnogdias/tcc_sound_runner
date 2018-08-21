@@ -61,6 +61,7 @@ public class PlayerBehavior : MonoBehaviour {
             if (this.lives > 0)
             {
                 this.lives--;
+                GameController.instance.GetComponent<GameController>().scoreMultiplier = 1; //Reset ScoreMultiplier
             }
             else
             {
@@ -81,6 +82,14 @@ public class PlayerBehavior : MonoBehaviour {
             default :
                 transform.position = this.middleLanePos;
                 break;
+        }
+    }
+
+    public void recoverLives()
+    {
+        if (this.lives < 4)
+        {
+            this.lives++;
         }
     }
     
