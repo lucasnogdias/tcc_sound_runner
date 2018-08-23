@@ -32,8 +32,25 @@ public class PlayerBehavior : MonoBehaviour {
             moveCharacter("center");
         }
 
+        //Get Screen touch
+        if (Input.touchCount > 0)
+        {
+            Vector3 touchPos = Input.GetTouch(0).position;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(touchPos);
+            if (worldPos.x > 0)
+            {
+                moveCharacter("rigth");
+            } else
+            {
+                moveCharacter("left");
+            }
+        } else {
+            moveCharacter("center");
+        }
+
+        /*
         //Get Phone or Tablet Orientation
-        DeviceOrientation orientation = Input.deviceOrientation;
+            DeviceOrientation orientation = Input.deviceOrientation;
         //Sets Player position based on the orientation value.
         if (orientation != DeviceOrientation.Unknown) //Check if we know device's orientation
         {
@@ -49,7 +66,7 @@ public class PlayerBehavior : MonoBehaviour {
             {
                 moveCharacter("center");
             }
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D coll)
