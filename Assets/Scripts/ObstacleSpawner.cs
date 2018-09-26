@@ -13,8 +13,9 @@ public class ObstacleSpawner : MonoBehaviour {
     private int consecutiveRight;
     private int consecutiveMiddle;
 
+    private ObstaclePool pool;
+
     public static Queue<AudioClip> obstacleAudio = new Queue<AudioClip>();
-    public GameObject obstaclePremade;
     public AudioClip[] audioSourcesList;
 
     static void reshuffle(AudioClip[] clips)
@@ -34,6 +35,9 @@ public class ObstacleSpawner : MonoBehaviour {
         //Set the list of audioClips in a stack used by the Obstacles
         reshuffle(audioSourcesList);
         ObstacleSpawner.obstacleAudio = new Queue<AudioClip>(this.audioSourcesList);
+
+        //Get pool
+        this.pool = GameObject.FindObjectOfType<ObstaclePool>().GetComponent<ObstaclePool>();
 
         //Start the coountdown for the spawns.
         StartCoroutine(waitAndSpawn(0.5f));
@@ -82,8 +86,9 @@ public class ObstacleSpawner : MonoBehaviour {
         }
         float spawnInterval = GameController.instance.GetComponent<GameController>().GetSpawnInterval();
         float spawnSpeed = GameController.instance.GetComponent<GameController>().GetSpawnSpeed();
-        GameObject obstacle = GameObject.Instantiate(this.obstaclePremade);
+        GameObject obstacle = this.pool.takeObstacle();
         obstacle.transform.position = ObstacleSpawner.initPositions[pos];
+        obstacle.GetComponent<ObstacleBehaviour>().reset();
         obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -spawnSpeed);
         StartCoroutine(waitAndSpawn(spawnInterval));
     }

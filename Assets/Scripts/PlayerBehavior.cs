@@ -10,12 +10,14 @@ public class PlayerBehavior : MonoBehaviour {
     private Vector3 rightLanePos = new Vector3(2.0f, -4.0f, 0.0f);
     private Vector3 middleLanePos = new Vector3(0.0f, -4.0f, 0.0f);
     private int lives = 4;
+    private ObstaclePool pool;
 
 	// Use this for initialization
 	void Start () {
         //Initial Position
         this.transform.position = middleLanePos;
-	}
+        this.pool = GameObject.FindObjectOfType<ObstaclePool>().GetComponent<ObstaclePool>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -73,7 +75,8 @@ public class PlayerBehavior : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Obstacle")
         {
-            Destroy(coll.gameObject);
+            //Destroy(coll.gameObject);
+            this.pool.storeObstacle(coll.gameObject);
             Handheld.Vibrate();
             if (this.lives > 0)
             {

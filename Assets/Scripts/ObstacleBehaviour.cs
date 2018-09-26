@@ -13,7 +13,26 @@ public class ObstacleBehaviour : MonoBehaviour {
         this.obstacleAudioSource.Play();
         
         //Set stereo pan based on position
-        //TODO: test if this makes any difference on audio
+        var x = this.transform.position.x;
+        if (x < -0.5f) //Left lane
+            obstacleAudioSource.panStereo = -1;
+        else if (x > 0.5f) //Right Lane
+            obstacleAudioSource.panStereo = 1;
+        else //Middle Lane
+            obstacleAudioSource.panStereo = 0;
+        //set random pitch for audio clip.
+        obstacleAudioSource.pitch = Random.Range(0.5f, 0.9f);
+        //set initial volume
+        obstacleAudioSource.volume = 0.0f;
+    }
+
+    public void reset ()
+    {
+        //Get a AudioClip from obstacle Spawner
+        this.obstacleAudioSource.clip = ObstacleSpawner.obstacleAudio.Dequeue();
+        this.obstacleAudioSource.Play();
+
+        //Set stereo pan based on position
         var x = this.transform.position.x;
         if (x < -0.5f) //Left lane
             obstacleAudioSource.panStereo = -1;
