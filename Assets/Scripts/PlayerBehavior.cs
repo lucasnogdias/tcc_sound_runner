@@ -39,7 +39,7 @@ public class PlayerBehavior : MonoBehaviour {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(touchPos);
             if (worldPos.x > 0)
             {
-                moveCharacter("rigth");
+                moveCharacter("right");
             } else
             {
                 moveCharacter("left");

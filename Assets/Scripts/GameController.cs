@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
         {
             GameController.instance = this.gameObject;
             DontDestroyOnLoad(this.gameObject);
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
         else
